@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormControl, Navbar, Row, Col } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 function PdHeader() {
+  const [query, setQuery] = useState("");
+
+  const history = useHistory();
+
+  function handleSearchPlanet(e) {
+    e.preventDefault();
+    history.push(`/?search=${query}`);
+  }
+
+  function handleSearchQuery(e) {
+    setQuery(e.target.value);
+  }
+
   return (
     <Navbar expand='lg shadow'>
       <Row className='w-100'>
@@ -18,11 +32,12 @@ function PdHeader() {
           </Navbar.Brand>
         </Col>
         <Col xs={12} lg={{ span: 4, offset: 1 }} className='text-center'>
-          <Form inline>
+          <Form inline onSubmit={handleSearchPlanet}>
             <FormControl
               type='text'
               placeholder='Find a Planet'
               className='mr-sm-2 w-100'
+              onChange={handleSearchQuery}
             />
           </Form>
         </Col>

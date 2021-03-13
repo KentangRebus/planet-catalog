@@ -7,13 +7,15 @@ import { Card, Col, Row, Carousel } from "react-bootstrap";
 import "./index.scss";
 import Skeleton from "react-loading-skeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 function Home() {
   const [planets, setPlanets] = useState([]);
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const history = useHistory();
+  const location = useLocation();
 
   const imgList = [
     "https://cdn.dribbble.com/users/4000493/screenshots/7029677/image.png",
@@ -47,8 +49,14 @@ function Home() {
   ];
 
   useEffect(() => {
-    getPlanets();
+    setPlanets([]);
+    if (!location.search) getPlanets();
   }, []);
+
+  useEffect(() => {
+    setPlanets([]);
+    getPlanets(location.search.split("=")[1], 1);
+  }, [location.search]);
 
   async function getPlanets(search = "", page = 1) {
     try {
@@ -56,6 +64,7 @@ function Home() {
       setPlanets((prev) => [...prev, ...data.results]);
       setPage(page + 1);
       console.log(data);
+      data.next === null && setHasMore(false);
     } catch (error) {
       console.error(error);
     }
@@ -92,9 +101,11 @@ function Home() {
 
       <h3 className='text-center my-5'>Planet Catalog</h3>
       <InfiniteScroll
+        style={{ overflowX: "hidden" }}
         dataLength={planets.length} //This is important field to render the next data
         next={fetchNextData}
-        hasMore={true}>
+        loader={<h4 className='text-center'>Loading...</h4>}
+        hasMore={hasMore}>
         <Row className='px-5'>
           {planets.length === 0 ? (
             <>

@@ -1,15 +1,17 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 
-import Header from "components/pd-header";
+import PdHeader from "components/pd-header";
 
 import "./index.scss";
+import PdFooter from "components/pd-footer";
 
 function PdContainer({ children }) {
   return (
     <Container fluid>
-      <Header />
+      <PdHeader />
       {children}
+      <PdFooter></PdFooter>
     </Container>
   );
 }

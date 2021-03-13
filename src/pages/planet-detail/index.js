@@ -42,9 +42,9 @@ function PlanetDetail() {
 
   return (
     <PdContainer>
-      <div className='pt-5 mt-5'>
+      <div className='pt-5 mt-5' style={{ overflowX: "hidden" }}>
         <div>
-          <Row className='justify-content-center mt-5'>
+          <Row className='justify-content-center pt-2 pb-5 mt-5'>
             <Col
               xs={8}
               lg={5}
@@ -57,62 +57,64 @@ function PlanetDetail() {
                 <Col lg={12} className='mb-3'>
                   <h1>{planet.name || <Skeleton />}</h1>
                 </Col>
-                <Col lg={9} className='text-left '>
-                  <Row>
-                    <Col>
+                <Col xs={8} lg={7} className='text-center'>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Diameter</h5>
                     </Col>
-                    <Col>{planet.diameter || <Skeleton />} km</Col>
+                    <Col xs={12}>{planet.diameter || <Skeleton />} km</Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Gravity</h5>
                     </Col>
-                    <Col>{planet.gravity || <Skeleton />}</Col>
+                    <Col xs={12}>{planet.gravity || <Skeleton />}</Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Surface Water</h5>
                     </Col>
-                    <Col>{planet.surface_water || <Skeleton />}</Col>
+                    <Col xs={12}>{planet.surface_water || <Skeleton />}</Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Population</h5>
                     </Col>
-                    <Col>{planet.population || <Skeleton />}</Col>
+                    <Col xs={12}>{planet.population || <Skeleton />}</Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Orbital Period</h5>
                     </Col>
-                    <Col>{planet.orbital_period || <Skeleton />} days</Col>
+                    <Col xs={12}>
+                      {planet.orbital_period || <Skeleton />} days
+                    </Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Climate</h5>
                     </Col>
-                    <Col>{planet.climate || <Skeleton />}</Col>
+                    <Col xs={12}>{planet.climate || <Skeleton />}</Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Terrain</h5>
                     </Col>
-                    <Col>{planet.terrain || <Skeleton />}</Col>
+                    <Col xs={12}>{planet.terrain || <Skeleton />}</Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Created At</h5>
                     </Col>
-                    <Col>
+                    <Col xs={12}>
                       {handleFormattedDate(planet.created) || <Skeleton />}
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className='mb-3'>
+                    <Col xs={12}>
                       <h5>Updated At</h5>
                     </Col>
-                    <Col>
+                    <Col xs={12}>
                       {handleFormattedDate(planet.edited) || <Skeleton />}
                     </Col>
                   </Row>

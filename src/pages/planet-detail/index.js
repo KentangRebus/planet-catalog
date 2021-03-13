@@ -15,6 +15,7 @@ function PlanetDetail() {
   const { id } = useParams();
 
   useEffect(() => {
+    window.scroll(0, 0);
     handleGetPlanetById(id);
   }, [id]);
 

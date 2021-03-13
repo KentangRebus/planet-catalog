@@ -49,6 +49,7 @@ function Home() {
   ];
 
   useEffect(() => {
+    window.scroll(0, 0);
     setPlanets([]);
     if (!location.search) getPlanets();
   }, []);
